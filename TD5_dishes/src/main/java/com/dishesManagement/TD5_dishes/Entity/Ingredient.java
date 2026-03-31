@@ -68,5 +68,8 @@ public class Ingredient {
     }
 
 
+    public void setUnitPrice(double unitPrice) {
+
+    }
 }
 

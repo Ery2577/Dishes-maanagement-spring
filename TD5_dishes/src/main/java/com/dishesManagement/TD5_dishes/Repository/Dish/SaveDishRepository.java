@@ -5,7 +5,7 @@ import com.dishesManagement.TD5_dishes.Entity.DishIngredient;
 import com.dishesManagement.TD5_dishes.Repository.Ingredient.AttachIngredientsRepository;
 import com.dishesManagement.TD5_dishes.Repository.Ingredient.DetachIngredientsRepository;
 import com.dishesManagement.TD5_dishes.Repository.Utils.GetNextSerialValueRepository;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -41,7 +41,7 @@ public class SaveDishRepository {
                         selling_price = EXCLUDED.selling_price
                 """;
 
-        try (Connection conn = DBConnection.getConnection()) {
+        try (Connection conn = DataSource.getConnection()) {
             conn.setAutoCommit(false);
 
             Integer dishId;

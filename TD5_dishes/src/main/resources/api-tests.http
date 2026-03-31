@@ -1,1 +1,39 @@
+### [GET] Liste des ingrédients
 GET http://localhost:8080/ingredients
+
+### [GET] Détails ingrédient ID 1
+GET http://localhost:8080/ingredients/1
+
+### [GET] Valeur du stock (Exemple avec paramètres)
+GET http://localhost:8080/ingredients/1/stock?at=2026-03-30T23:59:59Z&unit=PCS
+
+### [GET] Liste des plats
+GET http://localhost:8080/dishes
+
+### [PUT] Associer ingrédients au plat ID 5
+PUT http://localhost:8080/dishes/5/ingredients
+Content-Type: application/json
+
+[
+  { "id": "ing-1" },
+  { "id": "ing-3" }
+]
+
+### [GET] Ingrédients d'un plat (Sans filtre)
+GET http://localhost:8080/dishes/1/ingredients
+
+
+### [GET] Ingrédients d'un plat filtrés par NOM (ILike)
+GET http://localhost:8080/dishes/1/ingredients?ingredientName=pomme
+
+
+### [GET] Ingrédients d'un plat filtrés par PRIX (+/- 50)
+GET http://localhost:8080/dishes/1/ingredients?ingredientPriceAround=120
+
+
+### [GET] Ingrédients d'un plat avec les DEUX filtres combinés
+GET http://localhost:8080/dishes/1/ingredients?ingredientName=sel&ingredientPriceAround=10
+
+
+### [GET] Test Erreur 404 - Plat inexistant
+GET http://localhost:8080/dishes/999/ingredients

@@ -1,7 +1,7 @@
 package com.dishesManagement.TD5_dishes.Repository.Order;
 
 import com.dishesManagement.TD5_dishes.Entity.Order;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class FindOrderByReferenceRepository {
     public Order execute(String reference) {
         String sql = "SELECT id, reference, creation_datetime FROM \"order\" WHERE reference LIKE ?";
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, reference);

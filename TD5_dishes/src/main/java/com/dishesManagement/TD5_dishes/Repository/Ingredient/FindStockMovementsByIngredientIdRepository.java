@@ -4,7 +4,7 @@ import com.dishesManagement.TD5_dishes.Entity.Enums.MovementTypeEnum;
 import com.dishesManagement.TD5_dishes.Entity.Enums.Unit;
 import com.dishesManagement.TD5_dishes.Entity.StockMovement;
 import com.dishesManagement.TD5_dishes.Entity.StockValue;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class FindStockMovementsByIngredientIdRepository {
                     WHERE id_ingredient = ?
                 """;
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, id);

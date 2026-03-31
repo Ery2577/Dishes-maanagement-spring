@@ -4,7 +4,7 @@ import com.dishesManagement.TD5_dishes.Entity.DishIngredient;
 import com.dishesManagement.TD5_dishes.Entity.Enums.CategoryEnum;
 import com.dishesManagement.TD5_dishes.Entity.Enums.Unit;
 import com.dishesManagement.TD5_dishes.Entity.Ingredient;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class FindIngredientByDishIdRepository {
                     WHERE di.id_dish = ?
                 """;
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, idDish);

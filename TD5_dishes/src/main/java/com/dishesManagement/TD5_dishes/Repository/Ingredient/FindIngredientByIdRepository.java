@@ -2,7 +2,7 @@ package com.dishesManagement.TD5_dishes.Repository.Ingredient;
 
 import com.dishesManagement.TD5_dishes.Entity.Ingredient;
 import com.dishesManagement.TD5_dishes.Entity.Enums.CategoryEnum;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -21,7 +21,7 @@ public class FindIngredientByIdRepository {
     public Ingredient execute(Integer id) {
         String sql = "SELECT id, name, price, category FROM ingredient WHERE id = ?";
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, id);

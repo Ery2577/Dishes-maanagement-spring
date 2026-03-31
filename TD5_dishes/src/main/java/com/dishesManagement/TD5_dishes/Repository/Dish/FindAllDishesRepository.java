@@ -2,7 +2,7 @@ package com.dishesManagement.TD5_dishes.Repository.Dish;
 
 import com.dishesManagement.TD5_dishes.Entity.Dish;
 import com.dishesManagement.TD5_dishes.Entity.Enums.DishTypeEnum;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -24,7 +24,7 @@ public class FindAllDishesRepository {
         List<Dish> dishes = new ArrayList<>();
         String sql = "SELECT id, name, dish_type, selling_price FROM dish";
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

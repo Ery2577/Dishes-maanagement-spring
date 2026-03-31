@@ -3,7 +3,7 @@ package com.dishesManagement.TD5_dishes.Repository.Order;
 import com.dishesManagement.TD5_dishes.Entity.Dish;
 import com.dishesManagement.TD5_dishes.Entity.DishOrder;
 import com.dishesManagement.TD5_dishes.Repository.Dish.FindDishByIdRepository;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class FindDishOrderByIdOrderRepository {
         List<DishOrder> dishOrders = new ArrayList<>();
         String sql = "SELECT id, id_dish, quantity FROM dish_order WHERE id_order = ?";
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, idOrder);

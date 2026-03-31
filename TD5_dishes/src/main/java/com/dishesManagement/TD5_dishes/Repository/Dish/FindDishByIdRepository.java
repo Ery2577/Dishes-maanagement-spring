@@ -2,7 +2,7 @@ package com.dishesManagement.TD5_dishes.Repository.Dish;
 
 import com.dishesManagement.TD5_dishes.Entity.Dish;
 import com.dishesManagement.TD5_dishes.Entity.Enums.DishTypeEnum;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class FindDishByIdRepository {
                     WHERE id = ?
                 """;
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, id);

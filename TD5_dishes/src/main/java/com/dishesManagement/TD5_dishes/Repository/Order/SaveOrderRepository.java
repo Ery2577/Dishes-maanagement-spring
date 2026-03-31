@@ -2,7 +2,7 @@ package com.dishesManagement.TD5_dishes.Repository.Order;
 
 import com.dishesManagement.TD5_dishes.Entity.Order;
 import com.dishesManagement.TD5_dishes.Repository.Utils.GetNextSerialValueRepository;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -34,7 +34,7 @@ public class SaveOrderRepository {
                 ON CONFLICT (id) DO NOTHING
                 """;
 
-        try (Connection conn = DBConnection.getConnection()) {
+        try (Connection conn = DataSource.getConnection()) {
             conn.setAutoCommit(false);
 
             Integer orderId;

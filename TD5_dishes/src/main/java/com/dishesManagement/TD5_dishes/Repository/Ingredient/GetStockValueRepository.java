@@ -2,7 +2,7 @@ package com.dishesManagement.TD5_dishes.Repository.Ingredient;
 
 import com.dishesManagement.TD5_dishes.Entity.Enums.Unit;
 import com.dishesManagement.TD5_dishes.Entity.StockValue;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -23,7 +23,7 @@ public class GetStockValueRepository {
                      GROUP BY unit
                      """;
 
-        try (Connection connection = DBConnection.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, ingredientId);

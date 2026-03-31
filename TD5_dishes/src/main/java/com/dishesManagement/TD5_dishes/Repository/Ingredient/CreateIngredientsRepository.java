@@ -2,7 +2,7 @@ package com.dishesManagement.TD5_dishes.Repository.Ingredient;
 
 import com.dishesManagement.TD5_dishes.Entity.Ingredient;
 import com.dishesManagement.TD5_dishes.Repository.Utils.GetNextSerialValueRepository;
-import com.dishesManagement.TD5_dishes.Service.DBConnection;
+import com.dishesManagement.TD5_dishes.Service.DataSource;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -30,7 +30,7 @@ public class CreateIngredientsRepository {
                     VALUES (?, ?, ?::ingredient_category, ?)
                 """;
 
-        try (Connection conn = DBConnection.getConnection()) {
+        try (Connection conn = DataSource.getConnection()) {
             conn.setAutoCommit(false);
 
             try (PreparedStatement ps = conn.prepareStatement(insertSql)) {
