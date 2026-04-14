@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: API de Gestion des Ingrédients - TD5 Dishes
+  description: Spécification des services REST pour la gestion des ingrédients et de leurs stocks.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Serveur de développement local
+
+paths:
+  /ingredients:
+    get:
+      summary: Lister tous les ingrédients
+      operationId: getAllIngredients
+      responses:
+        '200':
+          description: Liste des ingrédients récupérée avec succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingredient'
+    post:
+      summary: Créer un nouvel ingrédient
+      operationId: createIngredient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+      responses:
+        '201':
+          description: Ingrédient créé avec succès
+
+  /ingredients/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Obtenir un ingrédient par son ID
+      responses:
+        '200':
+          description: Détails de l'ingrédient
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+        '404':
+          description: Ingrédient non trouvé
+    put:
+      summary: Mettre à jour un ingrédient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+      responses:
+        '200':
+          description: Ingrédient mis à jour
+
+  /ingredients/{id}/stock:
+    get:
+      summary: Consulter les mouvements de stock d'un ingrédient
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Historique des mouvements de stock
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StockMovement'
+
+components:
+  schemas:
+    Ingredient:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        unit:
+          type: string
+          description: "Unité de mesure ('PCS', 'KG', 'L')"
+        unitPrice:
+          type: number
+          format: double
+
+    StockMovement:
+      type: object
+      properties:
+        id:
+          type: string
+        ingredientId:
+          type: string
+        quantity:
+          type: number
+        type:
+          type: string
+          enum: [IN, OUT]
+        movementDate:
+          type: string
+          format: date-time

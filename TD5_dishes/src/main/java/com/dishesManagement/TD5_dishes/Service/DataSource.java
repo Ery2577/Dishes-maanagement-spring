@@ -14,3 +14,16 @@ public class DataSource {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
+
+// LEÇON À REGARDER C'EST ICI
+// Repository : class iray ihany
+// DataSource avec BIN
+// Mijery ny fonctionnalité rehetra fa misy tsy miasa
+// Les packages nécessaires dans le projet :
+//                                          - repository(mila @Repository puisque c'est la repository)
+//                                          - service
+//                                          - entity,
+//                                          - controller (need @Controller)
+//                                          - config,
+//                                          - (validator,
+//                                          - mapper)
